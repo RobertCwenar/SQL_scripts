@@ -47,7 +47,7 @@ insert into HumanResources.Dzieci (imie, nazwisko, wiek, data_urodzenia, status)
 
 select *
 from HumanResources.Dzieci
-
+-- test
 select *
 from HumanResources.Rodzice;
 
