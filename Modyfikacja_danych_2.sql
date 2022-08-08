@@ -1,17 +1,15 @@
 --INSERT INTO - Wprowadzanie danych
 
-insert into HumanResources.Dzieciaczki values (1, 'Adaœ', 'Noga', 8, '20140101');
+insert into HumanResources.Dzieciaczki values (1, 'Adas', 'Noga', 8, '20140101');
 
 insert into HumanResources.Dzieciaczki (id, imie, nazwisko,Aktualny_wiek) 
-values(2, 'Michaœ', 'Rêka', 12);
+values(2, 'Michal', 'Reka', 12);
 
 insert into HumanResources.Dzieciaczki (id, imie, nazwisko, Aktualny_wiek, data_urodzenia) 
 values(3, 'Wiesiek', 'Kromka', 7, '20150923'),
 (4, 'Marcin', 'Zagadka', 3, '20191223'),
 (5, 'Edek', 'Dudek', 10, '20120830');
 		
-
-
 
 
 select *
@@ -38,7 +36,7 @@ data_urodzenia date);
 
 
 alter table Humanresources.Dzieci
-add status varchar(10) default 'przyjêty';
+add status varchar(10) default 'przyjety';
 
 insert into HumanResources.Dzieci (imie, nazwisko, wiek, data_urodzenia) values 
 ('Darek', 'Kanarek', 12, '20100906');
