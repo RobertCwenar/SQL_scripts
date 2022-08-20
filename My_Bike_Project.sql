@@ -159,22 +159,6 @@ from MyBikeSystemMonth
 group by Date_Month, rideable_type
 order by Date_Month desc
 
---How many bikes is in system? (Second version)
-select distinct started_at
-from MyBikeSystemMonth
-where started_at between '2021-06-12 00:00' and '2021-06-13 00:00'
-order by started_at asc 
-
-select distinct started_at
-from MyBikeSystemMonth
-where started_at between '2021-06-12 08:00' and '2021-06-12 09:00'
-order by started_at asc 
-
-select distinct ended_at
-from MyBikeSystemMonth
-where ended_at between '2021-06-12 08:00' and '2021-06-12 09:00'
-order by ended_at asc 
-
 --How many hours per month were the bikes used?
 
 SELECT Date_Month, Sum(datediff (HOUR, started_at, ended_at )) AS "Time Used the bike in Hour" 
@@ -229,8 +213,6 @@ group by Date_Month, datediff (hour, started_at, ended_at),
 MONTH (started_at)  
 order by datediff (hour, started_at, ended_at ) desc
 	
-
-
 -- Table with the longest journey in units of a day for all months
 
 SELECT  Date_Month,max (datediff (DAY, started_at, ended_at )) AS "The longest trip in units of a day"
@@ -241,4 +223,3 @@ order by max (datediff (DAY, started_at, ended_at )) desc
 
 select *
 from Longest_trip
-
