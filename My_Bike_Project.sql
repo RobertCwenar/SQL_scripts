@@ -217,9 +217,27 @@ order by datediff (hour, started_at, ended_at ) desc
 
 SELECT  Date_Month,max (datediff (DAY, started_at, ended_at )) AS "The longest trip in units of a day"
 FROM MyBikeSystemMonth
-group by Date_Month, datediff (day, started_at, ended_at), 
-MONTH (started_at)  
+group by Date_Month, datediff (day, started_at, ended_at) 
 order by max (datediff (DAY, started_at, ended_at )) desc
 
 select *
 from Longest_trip
+
+
+-- The average trip in all months 
+
+ select Month, CAST (avg (Time_Used_in_Minutes) as Decimal (10)) as "Average used bikes in units of minutes" 
+ from BikesInMinutes
+ group by Month 
+ order by case when Month = 'February' then 2 
+				when Month = 'March' then 3
+				when Month = 'April' then 4
+				when Month = 'May' then 5
+				when Month = 'June' then 6
+				when Month = 'July' then 7
+				when Month = 'August' then 8
+				when Month = 'September' then 9
+				when Month = 'October' then 10
+				when Month = 'November' then 11
+				when Month = 'December' then 12 End 
+			
