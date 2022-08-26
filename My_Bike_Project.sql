@@ -16,7 +16,7 @@ select ride_id, (count(*)) as "Ride_ID"
 from MyBikeSystemMonth
 group by ride_id
 
--- Information about the most popular type of bike
+-- Information about the most popular type of bikes
 
 select rideable_type, count(*) as "Number Users" 
 from MyBikeSystemMonth
@@ -226,7 +226,7 @@ from Longest_trip
 
 -- The average trip in all months 
 
- select Month, CAST (avg (Time_Used_in_Minutes) as Decimal (10)) as "Average used bikes in units of minutes" 
+ select Month, CAST (avg (Time_Used_in_Minutes) as Decimal (10)) as "Average used bikes in units of 'minutes' " 
  from BikesInMinutes
  group by Month 
  order by case when Month = 'February' then 2 
@@ -240,4 +240,70 @@ from Longest_trip
 				when Month = 'October' then 10
 				when Month = 'November' then 11
 				when Month = 'December' then 12 End 
-			
+	
+
+
+select *
+from MyBikeSystemMonth
+
+-- The number of types of bikes used by member and casual users
+
+Select member_casual, rideable_type, count (*) as "Number users"   
+from MyBikeSystemMonth
+group by member_casual, rideable_type
+order by rideable_type asc 
+
+-- How many members or casual users of the bike use the bike for longer than 100 minutes?
+
+SELECT (member_casual), count(*) as "Users which used the bike more than 100 minutes" 
+FROM MyBikeSystemMonth
+where datediff(Minute, started_at, ended_at) > 100
+group by member_casual
+order by member_casual
+
+select *
+from MyBikeSystemMonth
+
+select *
+from BikesInMinutes
+
+
+-- Total number of bikes used for all months in minutes
+select  month, sum(Time_Used_in_Minutes) as "Total time in Months"
+from BikesInMinutes
+group by month 
+
+-- How many times have bikes been used by members and members in all months?
+SELECT Date_Month, Sum(datediff (Hour, started_at, ended_at )) AS "Time Used the bike in Hours", member_casual 
+FROM MyBikeSystemMonth
+group by Date_Month, member_casual
+order by case when Date_Month = 'February' then 2 
+				when Date_Month = 'March' then 3
+				when Date_Month = 'April' then 4
+				when Date_Month = 'May' then 5
+				when Date_Month = 'June' then 6
+				when Date_Month = 'July' then 7
+				when Date_Month = 'August' then 8
+				when Date_Month = 'September' then 9
+				when Date_Month = 'October' then 10
+				when Date_Month = 'November' then 11
+				when Date_Month = 'December' then 12 End 
+
+
+-- How many days are the bikes used by the member and casual users?
+select member_casual,  (Sum(datediff (day, started_at, ended_at ))) AS "Time Used the bike in days" 
+FROM MyBikeSystemMonth
+group by member_casual
+order by member_casual desc
+
+
+-- How many members and casuals use bikes between 1 and 60 minutes? 
+select  member_casual,
+count (member_casual) as "Number Users",   
+DATEDIFF(minute, started_at, ended_at) as "Time Used the bike in minutes"
+from MyBikeSystemMonth
+where  DATEDIFF(minute, started_at, ended_at) between 1 and 60 
+group by member_casual, DATEDIFF(minute, started_at, ended_at)
+having count(member_casual) between 1000 and 15000
+order by member_casual, [Time Used the bike in minutes] desc
+
