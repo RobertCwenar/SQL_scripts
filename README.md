@@ -18,9 +18,9 @@ The analysis answers the following key questions:
  -	How many members and casual users ride between 1 and 60 minutes?
 ________________________________________
 # Technologies Used
- -	SQL (PostgreSQL-flavored queries)
+ -	SQL (Microsoft SQL Server)
  -	Data source: Citi Bike NYC trip data
- -	Optional tools for visualization: Power BI / Tableau / Python (not required to run SQL)
+ -	Optional tools for visualization: Power BI / Python (not required to run SQL)
 ________________________________________
 # Dataset Assumptions
 The project uses the standard Citi Bike fields such as:
